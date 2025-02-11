@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Jaja! 🎂</title>
+    <title>Happy Birthday Jaja! 🎉</title>
     <style>
         body {
             background: linear-gradient(to bottom, #fde2e4, #fad2e1);
@@ -11,40 +11,46 @@
             text-align: center;
             padding: 20px;
             color: #a45a6c;
-            overflow: hidden;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
-        
         h1 {
-            font-size: 3em;
+            font-size: 2.5em;
             color: #ff6699;
-            text-shadow: 0px 0px 10px #ff99cc;
-            animation: glow 2s infinite alternate;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
         }
-        
-        @keyframes glow {
-            from { text-shadow: 0px 0px 10px #ff99cc; }
-            to { text-shadow: 0px 0px 20px #ff6699; }
-        }
-
         .message {
-            font-size: 1.5em;
+            font-size: 1.2em;
             margin: 20px auto;
-            max-width: 600px;
+            max-width: 90%;
             background: rgba(255, 255, 255, 0.8);
             padding: 15px;
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
-
-        img {
-            width: 80%;
-            max-width: 500px;
+        .download-text {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #ff3366;
             margin-top: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
-
-        /* Confetti Effect */
+        .arrow-down {
+            font-size: 2em;
+            color: #ff3366;
+            animation: bounce 1.5s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+        img {
+            width: 90%;
+            max-width: 500px;
+            margin-top: 10px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
         .confetti {
             position: fixed;
             width: 10px;
@@ -54,59 +60,35 @@
             border-radius: 50%;
             animation: fall 5s linear infinite;
         }
-
         @keyframes fall {
             from { transform: translateY(-100vh) translateX(0px); }
             to { transform: translateY(100vh) translateX(30px); }
-        }
-
-        /* Balloon Animation */
-        .balloon {
-            position: absolute;
-            width: 60px;
-            height: 80px;
-            background: red;
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh); opacity: 1; }
-            50% { transform: translateY(50vh) translateX(30px); }
-            100% { transform: translateY(-10vh); opacity: 0; }
-        }
-
-        /* Sparkles */
-        .sparkle {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            background: gold;
-            border-radius: 50%;
-            animation: sparkle 2s infinite ease-in-out;
-        }
-
-        @keyframes sparkle {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.5); }
-            100% { opacity: 0; transform: scale(2); }
         }
     </style>
 </head>
 <body>
 
-    <h1>🎉 Happy Birthday, Jaja! 🎂</h1>
+    <h1>Happy Birthday, Jaja! 🎉</h1>
     
     <div class="message">
         <p>Hey cutie! 💖</p>
         <p>You make every day brighter and my heart happier. I hope your birthday is filled with love, laughter, and all the joy you bring to my life!</p>
-        <p>You're the best gift life has given me, and I can't wait to celebrate many more birthdays with you! 🎁</p>
+        <p>You're the best gift life has given me, and I can't wait to celebrate many more birthdays with you! 🎂🎁</p>
     </div>
 
-    <img src="birthday_image.jpg" alt="Birthday Card">
+    <div class="download-text">Click to download the birthday card! 📥</div>
+    <div class="arrow-down">⬇️</div>
+    
+    <a href="birthday_image.jpg" download>
+        <img src="birthday_image.jpg" alt="Birthday Card">
+    </a>
+
+    <audio autoplay loop>
+        <source src="birthday_song.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
 
     <script>
-        // Confetti Effect
         function createConfetti() {
             for (let i = 0; i < 30; i++) {
                 let confetti = document.createElement("div");
@@ -117,34 +99,7 @@
                 document.body.appendChild(confetti);
             }
         }
-
-        // Balloon Effect
-        function createBalloons() {
-            for (let i = 0; i < 10; i++) {
-                let balloon = document.createElement("div");
-                balloon.className = "balloon";
-                balloon.style.left = Math.random() * window.innerWidth + "px";
-                balloon.style.background = ["#ff99cc", "#ff6699", "#ffccff"][Math.floor(Math.random() * 3)];
-                balloon.style.animationDuration = Math.random() * 4 + 4 + "s";
-                document.body.appendChild(balloon);
-            }
-        }
-
-        // Sparkle Effect
-        function createSparkles() {
-            for (let i = 0; i < 20; i++) {
-                let sparkle = document.createElement("div");
-                sparkle.className = "sparkle";
-                sparkle.style.left = Math.random() * window.innerWidth + "px";
-                sparkle.style.top = Math.random() * window.innerHeight + "px";
-                sparkle.style.animationDuration = Math.random() * 2 + "s";
-                document.body.appendChild(sparkle);
-            }
-        }
-
         createConfetti();
-        createBalloons();
-        createSparkles();
     </script>
 
 </body>
