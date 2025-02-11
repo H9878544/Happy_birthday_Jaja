@@ -10,47 +10,52 @@
             font-family: 'Comic Sans MS', cursive, sans-serif;
             text-align: center;
             padding: 20px;
-            color: #a45a6c;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+            color: #a45c6c;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            scroll-behavior: smooth; /* Smooth scrolling */
         }
+
         h1 {
-            font-size: 2.5em;
+            font-size: 3em;
             color: #ff6699;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            text-shadow: 0px 0px 10px #ff99cc;
+            animation: glow 2s infinite alternate;
         }
+
+        @keyframes glow {
+            from { text-shadow: 0px 0px 10px #ff99cc; }
+            to { text-shadow: 0px 0px 20px #ff6699; }
+        }
+
         .message {
-            font-size: 1.2em;
+            font-size: 1.5em;
             margin: 20px auto;
-            max-width: 90%;
-            background: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            background: rgba(235, 255, 255, 0.8);
             padding: 15px;
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+
+        img {
+            width: 80%;
+            max-width: 500px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
         .download-text {
             font-size: 1.2em;
+            margin-top: 10px;
             font-weight: bold;
-            color: #ff3366;
-            margin-top: 20px;
         }
+
         .arrow-down {
             font-size: 2em;
-            color: #ff3366;
-            animation: bounce 1.5s infinite;
         }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
-        }
-        img {
-            width: 90%;
-            max-width: 500px;
-            margin-top: 10px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            cursor: pointer;
-        }
+
+        /* Confetti Effect */
         .confetti {
             position: fixed;
             width: 10px;
@@ -60,42 +65,72 @@
             border-radius: 50%;
             animation: fall 5s linear infinite;
         }
+
         @keyframes fall {
             from { transform: translateY(-100vh) translateX(0px); }
             to { transform: translateY(100vh) translateX(30px); }
+        }
+
+        /* Play Button */
+        #play-button {
+            margin-top: 20px;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border: none;
+            background-color: #ff6699;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
     <h1>Happy Birthday, Jaja! 🎉</h1>
-    
+
     <div class="message">
         <p>Hey cutie! 💖</p>
-        <p>You make every day brighter and my heart happier. I hope your birthday is filled with love, laughter, and all the joy you bring to my life!</p>
-        <p>You're the best gift life has given me, and I can't wait to celebrate many more birthdays with you! 🎂🎁</p>
+        <p>You make every day brighter and my heart happier. I hope your day is filled with love and joy!</p>
+        <p>You're the best gift life has given me, and I can't wait to celebrate with you! 🎂</p>
     </div>
 
-    <div class="download-text">Click to download the birthday card! 📥</div>
+    <div class="download-text">Click to download the birthday card! 🎁</div>
     <div class="arrow-down">⬇️</div>
-    
+
     <a href="birthday_image.jpg" download>
         <img src="birthday_image.jpg" alt="Birthday Card">
     </a>
 
-    <audio autoplay loop>
+    <!-- Audio -->
+    <audio id="bg-music" loop muted>
         <source src="birthday_song.mp3" type="audio/mpeg">
-        Your browser does not support the audio tag.
     </audio>
+    
+    <!-- Play Button -->
+    <button id="play-button" onclick="playMusic()">▶ Play Music</button>
 
     <script>
+        function playMusic() {
+            let audio = document.getElementById("bg-music");
+            audio.muted = false; 
+            audio.play();
+        }
+
+        // Auto-play after user interaction
+        window.addEventListener('click', () => {
+            let audio = document.getElementById("bg-music");
+            audio.muted = false;
+            audio.play();
+        });
+
+        // Confetti Effect
         function createConfetti() {
             for (let i = 0; i < 30; i++) {
                 let confetti = document.createElement("div");
                 confetti.className = "confetti";
                 confetti.style.left = Math.random() * window.innerWidth + "px";
                 confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
-                confetti.style.background = ["#ff66b2", "#ffccff", "#ff99cc"][Math.floor(Math.random() * 3)];
+                confetti.style.background = ["#ff66b2", "#ffccff", "#ff9999"][Math.floor(Math.random() * 3)];
                 document.body.appendChild(confetti);
             }
         }
